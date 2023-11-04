@@ -1,0 +1,16 @@
+{
+    "ENV": "dev",
+    "BASE_URL": "",
+    "DEBUG": false,
+    "DATABASE": {
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "USER": "",
+        "NAME": "",
+        "PASSWORD": "",
+        "HOST": "localhost",
+        "PORT": 5432,
+    },
+    "HOST_IP": [
+        "*"
+    ]
+}
