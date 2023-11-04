@@ -1,0 +1,144 @@
+$auth_background: "../images/auth/auth_background.png";
+
+.form_page {
+  //@media (max-width: 482px) {
+  //  height: fit-content;
+  //  padding: 75px 0 100px;
+  //}
+  //@media (min-width: 483px) {
+  //
+  //}
+  height: 125vh;
+  padding: 80px 0 100px;
+  position: relative;
+
+  &:after {
+    background-color: #d6d6d6;
+    background-image: url($auth_background);
+    color: gray;
+    content: "";
+    //@media (max-width: 482px) {
+    //  height: 200vh;
+    //}
+    //@media (min-width: 482px) {
+    //
+    //}
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .form_header {
+    padding: 0 0 75px;
+    position: relative;
+    z-index: 1;
+
+    .logo {
+      img {
+        max-height: 36px;
+      }
+    }
+  }
+
+  .form_wrap {
+    margin: 0 auto;
+    justify-content: center;
+    min-height: 70%;
+    position: relative;
+    z-index: 1;
+
+    a {
+      color: rgba(var(--vs-primary), 1);
+    }
+
+    .form_inner {
+      background: #fff;
+      @media screen and (max-width: 483px) {
+        padding: 30px;
+        h1 {
+          font-size: 1.5em;
+          padding-bottom: 10px;
+          margin-top: 0;
+        }
+      }
+      @media screen and (min-width: 483px) {
+        padding: 50px;
+      }
+      form {
+        padding-top: 40px;
+      }
+    }
+
+    #user_ico {
+      background-position: right 5px;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      padding-right: 30px;
+    }
+
+    #password_ico {
+      background-position: right 12px;
+      background-repeat: no-repeat;
+      background-size: 15px;
+      padding-right: 30px;
+    }
+
+    .or {
+      border-top: 1px solid;
+      margin: 20px 0 40px 0;
+
+      span {
+        background-color: #ffffff;
+        border-radius: 50%;
+        left: 50%;
+        padding: 5px 10px;
+        position: absolute;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    .ssd_sign {
+      display: block;
+      font-size: 14px;
+      text-align: center;
+    }
+  }
+
+  .form_wrap.signup_form {
+    max-width: 705px;
+  }
+}
+
+.card-view {
+  align-items: center;
+  display: flex;
+  height: 90vh;
+  justify-content: center;
+  flex: auto;
+}
+
+.scroll-auth {
+  max-height: 125vh;
+}
+
+.form-group {
+  .form-control {
+    margin-bottom: 10px;
+  }
+}
+
+.error {
+  color: red;
+  font-size: 80%;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.form-label {
+  margin-bottom: 0;
+  margin-top: .5rem;
+}
+

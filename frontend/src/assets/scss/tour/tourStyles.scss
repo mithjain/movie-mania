@@ -1,0 +1,62 @@
+.tour-sub-navbar-icons {
+  .v-step[x-placement^="bottom"] {
+    margin-top: 2.2rem !important;
+    //margin-right: 1rem !important;
+  }
+}
+
+.tour-card-icons {
+  .v-step[x-placement^="bottom"] {
+    margin-top: 2rem !important;
+  }
+}
+
+.explore-data-selection {
+  .v-step[x-placement^="right"] {
+    margin-left: 21rem !important;
+  }
+}
+
+.tour-editor-switch-button {
+  .v-step[x-placement^="bottom"] {
+    margin-top: 2rem !important;
+  }
+}
+
+.tour-editor-razorIQ-button {
+  .v-step[x-placement^="bottom"] {
+    margin-top: 3.25rem !important;
+  }
+}
+
+.tour-home-navbar-icon {
+  .v-step[x-placement^="bottom"] {
+    margin-top: -2rem !important;
+  }
+}
+
+.data-tour-side-bar {
+  .v-step[x-placement^="bottom"] {
+    .v-step__content {
+       white-space:pre-wrap;
+    }
+  }
+}
+
+.tour-nlq-chat-side-bar {
+  .v-step[x-placement^="bottom"] {
+    .v-step__content {
+       white-space:pre-wrap;
+    }
+  }
+}
+
+.tour-nlq-chat-sub-navbar {
+  .v-step[x-placement^="bottom"] {
+    margin-top: 2rem !important;
+  }
+}
+
+.disable-pointer {
+  pointer-events: all !important;
+}

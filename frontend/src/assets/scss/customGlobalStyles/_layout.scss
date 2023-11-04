@@ -1,0 +1,39 @@
+/* Styles for Layout */
+.layout-messages {
+  text-transform: capitalize;
+  color: rgba(128, 128, 128, 0.3);
+  border: 1px solid rgba(128, 128, 128, 0.3);
+}
+
+.vertical-message {
+  display: block;
+  position: relative;
+}
+
+.hidden-element-holder {
+  min-height: 30px;
+  text-align: center;
+  line-height: 30px;
+}
+
+.collapsed-element-holder {
+  /*min-height: 100px !important;*/
+}
+
+.vertical-rotate {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+  transform: translateX(-50%) translateY(-50%) rotate(-90deg);
+}
+
+/* Styles for Toolbar */
+.toolbar-active {
+  box-shadow: 0px 0px 0px 1px #e6e6e6;
+}
+
+.element-layout {
+  position: relative;
+}

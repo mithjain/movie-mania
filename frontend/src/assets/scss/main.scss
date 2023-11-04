@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "Varela Round";
+  src: url('../fonts/VarelaRound-Regular.ttf') format('truetype');
+}
+
+@import "vuexy/variables";
+@import "vuexy/typography";
+@import "vuexy/routerAnimations";
+@import "vuexy/transitions";
+@import "vuexy/customClasses";
+
+// Vuesax fixes and enhancement
+@import "vuexy/fixesVuesax";
+
+// Global Custom Styles
+@import "customGlobalStyles/global";

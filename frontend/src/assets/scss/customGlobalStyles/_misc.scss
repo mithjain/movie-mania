@@ -1,0 +1,1217 @@
+@import "variables";
+
+body, .default-font-family {
+  font-family: "Varela Round", serif;
+}
+
+body {
+  overflow: hidden;
+}
+
+
+@mixin dragging-item-common {
+  padding-top: 2px;
+  font-weight: 500;
+  font-size: 12px;
+  margin-bottom: 5px;
+  text-align: left;
+  padding-left: 12px;
+  height: 25px;
+  color: white;
+}
+
+$cursorStyles: (
+    "pointer": pointer,
+    "grab": grab,
+    "text": text,
+    "not-allowed": not-allowed,
+    "default": default,
+    "col-resize":col-resize
+);
+
+@each $style, $value in $cursorStyles {
+  .#{$style}-cursor {
+    cursor: $value;
+  }
+}
+
+$heightSizes: (
+    1: 1px,
+    12: 12px,
+    15: 15px,
+    16: 16px,
+    17: 17px,
+    20: 20px,
+    25: 25px,
+    30: 30px,
+    40: 40px,
+    50: 50px,
+    70: 70px,
+    80: 80px,
+    90: 90px,
+    100: 100px,
+    130: 130px,
+    150: 150px,
+    170: 170px,
+    180: 180px,
+    200: 200px,
+    220: 220px,
+    250: 250px,
+    265: 265px,
+    300: 300px,
+    320: 320px,
+    350: 350px,
+    360: 360px,
+    400: 400px,
+    450: 450px,
+    500: 500px,
+    550: 550px,
+    max-content: max-content,
+    min-content: min-content,
+);
+
+@each $heightSize, $height in $heightSizes {
+  .height-#{$heightSize} {
+    height: $height !important;
+  }
+  .max-height-#{$heightSize} {
+    max-height: $height !important;
+  }
+  .min-height-#{$heightSize} {
+    min-height: $height !important;
+  }
+}
+
+@each $widthSize, $width in $heightSizes {
+  .fixed-width-#{$widthSize} {
+    width: $width !important;
+  }
+  .fixed-max-width-#{$widthSize} {
+    max-width: $width !important;
+  }
+  .fixed-min-width-#{$widthSize} {
+    min-width: $width !important;
+  }
+}
+
+$relativeHeightSizes: (
+    5: 5%,
+    10: 10%,
+    25: 25%,
+    30: 30%,
+    40: 40%,
+    50: 50%,
+    60: 60%,
+    70: 70%,
+    75: 75%,
+    80: 80%,
+    85: 85%,
+    90: 90%,
+    95: 95%,
+    100: 100%,
+    inherit: inherit,
+);
+@each $heightSize, $height in $relativeHeightSizes {
+  .relative-height-#{$heightSize} {
+    height: $height !important;
+  }
+  .relative-max-height-#{$heightSize} {
+    max-height: $height !important;
+  }
+  .relative-min-height-#{$heightSize} {
+    min-height: $height !important;
+  }
+}
+
+$widthSizes: (
+    5: 5%,
+    10: 10%,
+    14: 14%,
+    15: 15%,
+    16: 16%,
+    18: 18%,
+    20: 20%,
+    25: 25%,
+    30: 30%,
+    35: 35%,
+    40: 40%,
+    45: 45%,
+    50: 50%,
+    60: 60%,
+    70: 70%,
+    75: 75%,
+    80: 80%,
+    85: 85%,
+    90: 90%,
+    95: 95%,
+    100: 100%,
+    inherit: inherit,
+    max-content: max-content,
+    min-content: min-content,
+    fit-content: fit-content,
+);
+@each $widthSize, $width in $widthSizes {
+  .width-#{$widthSize} {
+    width: $width !important;
+  }
+  .max-width-#{$widthSize} {
+    max-width: $width !important;
+  }
+  .min-width-#{$widthSize} {
+    min-width: $width !important;
+  }
+}
+
+$positionDirections: (
+    t:top,
+    l:left,
+    b:bottom,
+    r:right,
+);
+
+$spacingDirections: (
+    "":(top, left, right, bottom),
+    t:(top),
+    l:(left),
+    b:(bottom),
+    r:(right),
+    v:(top, bottom),
+    h:(left, right),
+    tr:(top, right),
+    tl:(top, left),
+    br:(bottom, right),
+    bl:(bottom, left),
+    th:(top, left, right),
+    bh:(bottom, left, right),
+    vl:(top, bottom, left),
+    vr:(top, bottom, right),
+);
+$spacingValues: (
+    none:0,
+    auto:auto,
+    0:0,
+    1:1px,
+    2:2px,
+    3:3px,
+    4:4px,
+    5:5px,
+    6:6px,
+    7:7px,
+    8:8px,
+    9:9px,
+    10:10px,
+    11:11px,
+    12:12px,
+    13:13px,
+    15:15px,
+    16:16px,
+    17:17px,
+    18:18px,
+    20:20px,
+    22:22px,
+    24:24px,
+    25:25px,
+    30:30px,
+    35:35px,
+    37:37px,
+    40:40px,
+    50:50px,
+    65:65px,
+    80:80px,
+    100:100px,
+    150:150px,
+    p10:10%,
+    p25:25%,
+    p50:50%,
+);
+
+@each $spacingSize, $spacingValue in $spacingValues {
+  .border-radius-#{$spacingSize} {
+    border-radius: $spacingValue;
+  }
+  .border-radius-bottom-left-#{$spacingSize} {
+    border-bottom-left-radius: #{$spacingValue};
+  }
+  .border-radius-bottom-right-#{$spacingSize} {
+    border-bottom-right-radius: #{$spacingValue};
+  }
+  .border-radius-top-left-#{$spacingSize} {
+    border-top-left-radius: #{$spacingValue};
+  }
+  .border-radius-top-right-#{$spacingSize} {
+    border-top-right-radius: #{$spacingValue};
+  }
+  @each $spacingDirection, $stylingDirections in $spacingDirections {
+
+    .m#{$spacingDirection}-#{$spacingSize} {
+      @each $stylingDirection in $stylingDirections {
+        margin-#{$stylingDirection}: #{$spacingValue} !important;
+      }
+    }
+    .m#{$spacingDirection}--#{$spacingSize} {
+      @each $stylingDirection in $stylingDirections {
+        @if ($spacingValue == auto) {
+          margin-#{$stylingDirection}: $spacingValue !important;
+        } @else {
+          margin-#{$stylingDirection}: (-1 * $spacingValue) !important;
+        }
+      }
+    }
+    .p#{$spacingDirection}-#{$spacingSize} {
+      @each $stylingDirection in $stylingDirections {
+        padding-#{$stylingDirection}: #{$spacingValue} !important;
+      }
+    }
+
+  }
+
+  @each $positionDirection, $positionValue in $positionDirections {
+    .#{$positionDirection}-#{$spacingSize} {
+      #{$positionValue}: #{$spacingValue} !important;
+    }
+    .#{$positionDirection}--#{$spacingSize} {
+      #{$positionValue}: -#{$spacingValue} !important;
+    }
+  }
+}
+
+@for $columnSpan from 1 through 12 {
+  $value: percentage(1 / 12) * $columnSpan;
+
+  @each $spacingDirection, $stylingDirections in $spacingDirections {
+    .m#{$spacingDirection}-col-#{$columnSpan} {
+      @each $stylingDirection in $stylingDirections {
+        margin-#{$stylingDirection}: #{$value} !important;
+      }
+    }
+    .m#{$spacingDirection}-col--#{$columnSpan} {
+      @each $stylingDirection in $stylingDirections {
+        margin-#{$stylingDirection}: (-1 * $value) !important;
+      }
+    }
+    .p#{$spacingDirection}-col-#{$columnSpan} {
+      @each $stylingDirection in $stylingDirections {
+        padding-#{$stylingDirection}: #{$value} !important;
+      }
+    }
+  }
+}
+
+$borderTypes: (
+    "":"",
+    "-top":"",
+    "-bottom":"",
+    "-left":"",
+    "-right":"",
+);
+$borderStyles: (
+    "":solid,
+    "solid":solid,
+    "-dashed":dashed
+);
+$borderColors: (
+    "": rgba(235, 235, 235, 0.75),
+    "-primary": rgba(var(--vs-primary), 1),
+    "-secondary": rgba(var(--vs-secondary), 1),
+    "-danger":rgba(var(--vs-danger), 1),
+    "-dark": lightgray,
+    "-error": red,
+    "-blue": #6B84AF,
+    "-white": white,
+);
+$borderWidths: (
+    "":1px,
+    "-1":1px,
+    "-2":2px,
+    "-3":3px,
+    "-4":4px,
+    "-5":5px,
+    "-none":0,
+);
+
+@each $borderType, $bord in $borderTypes {
+  @each $borderSize, $borderWidth in $borderWidths {
+    @each $borderStyleType, $borderStyle in $borderStyles {
+      @each $borderColorName, $borderColor in $borderColors {
+        //how to use this class
+        // example class name :
+        // bordered {'' || '-top' || '-bottom' || '-left' || '-right' } {'' || '-dashed'} {'' || '-dark'} {'' || '-1' || '-2' || '-3' || '-4' || '-5'}
+        .bordered#{ $borderType }#{ $borderStyleType }#{$borderColorName}#{ $borderSize } {
+          border#{ $borderType} : $borderWidth $borderStyle $borderColor !important;
+        }
+
+        .bordered-hover#{ $borderType }#{ $borderStyleType }#{$borderColorName}#{ $borderSize } {
+          border: $borderWidth $borderStyle transparent !important;
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            border#{ $borderType} : $borderWidth $borderStyle $borderColor !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+$dataTypesColorsMap: (
+    text:(
+        background: $dimensionsBackgroundColor,
+        color: $dimensionsColor
+    ),
+    timestamp:(
+        background: $datesBackgroundColor,
+        color: $datesColor
+    ),
+    numeric:(
+        background:$measuresBackgroundColor,
+        color:$measuresColor,
+    ),
+    variable:(
+        background: $variablesBackgroundColor,
+        color: $variablesColor
+    ),
+    function:(
+        background:$functionsBackgroundColor,
+        color:$functionsColor,
+    ),
+    dataFunction:(
+        background:$dataFunctionsBackgroundColor,
+        color:$dataFunctionsColor,
+    ),
+    grey:(
+        background:rgba(214, 213, 210, 0.5),
+        color:white
+    )
+);
+
+.error-variable-text {
+  //color: $dataTypesColorsMap[variable][color];
+  color: $variablesColor;
+}
+
+@each $dataType, $dataTypeParameters in $dataTypesColorsMap {
+  .#{$dataType}- {
+    &type-color {
+      color: map_get($dataTypeParameters, "color")
+    }
+
+    &dragging-active-item {
+      border: 1px dashed map_get($dataTypeParameters, "color") !important;
+      background-color: map_get($dataTypeParameters, "background") !important;
+    }
+
+    &dragging-item {
+      @include dragging-item-common;
+      background-color: map_get($dataTypeParameters, "color");
+    }
+
+    &hover {
+      color: map_get($dataTypeParameters, "color");
+      background-color: white;
+
+      &:hover {
+        color: white;
+        background-color: map_get($dataTypeParameters, "color");
+      }
+    }
+
+    &bordered {
+      color: map_get($dataTypeParameters, "color");
+      border: 1px solid map_get($dataTypeParameters, "color") !important;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &bordered-dashed {
+      color: map_get($dataTypeParameters, "color");
+      border: 1px dashed map_get($dataTypeParameters, "color") !important;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &bordered-hover {
+      color: map_get($dataTypeParameters, "color");
+      border: 1px solid map_get($dataTypeParameters, "color") !important;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        color: white;
+        background-color: map_get($dataTypeParameters, "color");
+      }
+    }
+
+    &border-on-hover {
+
+      &:hover {
+        border: 1px solid white !important;
+      }
+    }
+
+    &filled {
+      color: white !important;
+      background: map_get($dataTypeParameters, "color") !important;
+    }
+
+    &background {
+      background-color: map_get($dataTypeParameters, "background") !important;
+    }
+  }
+
+}
+
+$systemLiteColors: (
+    primary:rgba(var(--vs-primary), 0.2)
+);
+
+@each $systemLiteColorName, $systemLiteColorValue in $systemLiteColors {
+  .#{$systemLiteColorName}-lite-bg {
+    background: #{$systemLiteColorValue};
+  }
+}
+
+$availableOverflow: (
+    x-auto: (prop:-x, val:auto),
+    x-hidden: (prop:-x, val:hidden),
+    y-auto:(prop:-y, val:auto),
+    y-hidden: (prop:-y, val:hidden),
+    both-auto: (prop:"", val:auto),
+    both-hidden: (prop:"", val:hidden),
+);
+
+@each $_overflow, $type in $availableOverflow {
+  .overflow--#{ $_overflow } {
+    overflow#{ map_get($type ,"prop") }: map_get($type, "val") !important;
+  }
+}
+
+//IF YOU'RE SEARCHING FOR A MAX-ALLOWED HEIGHT, IF IT'S AVAILABLE BUT THE PURPOSE IS DIFFERENT, DON'T USE THAT HEIGHT.
+// CREATED YOUR OWN HEIGHT AND USE THAT, BECAUSE IF SOMEHOW THAT HEIGHT'S REQUIREMENT CHANGES AND SOMEONE CHANGES THAT
+// HEIGHT, YOUR CONTAINERS ALSO GET AFFECTED.
+$containers: (
+    navbar: 105px,
+    single-nav: 60px,
+    data-source: 180px,
+    chart-config: 235px,
+    data-etl-sm:180px,
+    etl-sidebar-sm:275px,
+    etl-playground-sm:255px,
+    etl-playground-view-sm:350px,
+    data-etl-lg:105px,
+    etl-sidebar-lg:200px,
+    etl-playground-lg:155px,
+    etl-playground-view-lg:285px,
+    etl-flows-pipeline:180px,
+    data-search: 200px,
+    list-collapse: 700px,
+    usecase: 120px,
+    app-tab:105px,
+    app-data-columns:195px,
+    no-app-data-columns:145px,
+    app-report:180px,
+    card-editor:225px,
+    scheduler: 105px,
+    manage-profile: 60px,
+    home-page: 180px,
+    templates-page: 150px,
+    template-overview: 60px,
+    conditional-formatting:340px,
+    nlq-cheatsheet:235px,
+    formula-creator: 160px,
+    nlq-left-side-bar: 108px
+);
+
+.min-container--data-search {
+  min-height: calc(125vh - 235px);
+  width: 100%;
+}
+
+@each $container, $height in $containers {
+  .max-allowed-container--#{$container} {
+    height: calc(125vh - #{ $height });
+    //max-height: calc(125vh - #{ $height });
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+}
+
+$fontSizes: (
+    smallest:7pt,
+    smaller:8pt,
+    small:9.5pt,
+    small-medium:10.5pt,
+    medium:11.5pt,
+    medium-regular:12.25pt,
+    regular:13pt,
+    regular-large:13.25pt,
+    large:15pt,
+    huge:17pt,
+    largest: 20pt,
+);
+@each $fontSizeName, $fontSize in $fontSizes {
+  .font-#{$fontSizeName} {
+    font-size: #{$fontSize} !important;
+  }
+}
+
+$textStyles: (
+    capitalize:capitalize,
+    uppercase:uppercase,
+    lowercase:lowercase,
+    underline: underline,
+);
+@each $textStyleName, $textStyle in $textStyles {
+
+  .text-#{$textStyleName} {
+    text-transform: $textStyle !important;
+  }
+
+}
+
+.text-regular {
+  font-weight: normal !important;
+}
+
+$zLevels: (
+    "-1":0,
+    "-2":90,
+    "-3":990,
+    "-4":9990,
+    "-5":99990,
+    "-6":999990,
+    "-7":9999990,
+    "-8":99999990,
+);
+$zLevelPriorities: (
+    "-1": -1,
+    "":9,
+    "0":0,
+    "1":1,
+    "2":2,
+    "3":3,
+    "4":4,
+    "5":5,
+    "6":6,
+    "7":7,
+    "8":8,
+    "9":9
+);
+
+@each $zLevelType, $zLevel in $zLevels {
+
+  @each $zLevelPriorityType, $zLevelPriority in $zLevelPriorities {
+    .z-level#{$zLevelType}#{$zLevelPriorityType} {
+      z-index: $zLevel+$zLevelPriority;
+    }
+    .z-level#{$zLevelType}#{$zLevelPriorityType}-hover {
+      &:hover {
+        z-index: $zLevel+$zLevelPriority;
+      }
+    }
+    .z-level#{$zLevelType}#{$zLevelPriorityType}i {
+      z-index: $zLevel+$zLevelPriority !important;
+    }
+    .z-level#{$zLevelType}#{$zLevelPriorityType}i-hover {
+      &:hover {
+        z-index: $zLevel+$zLevelPriority !important;
+      }
+    }
+  }
+}
+
+.analysis-function-image {
+  width: 40px;
+  height: 40px;
+  margin: auto;
+  object-fit: fill;
+  background-position: center;
+  background-color: transparent;
+  background-size: 100%;
+
+  &.mini {
+    width: 25px;
+    height: 25px;
+  }
+
+  &.large {
+    width: 60px;
+    height: 60px;
+  }
+
+  &.grayscale {
+    filter: grayscale(100%);
+  }
+
+}
+
+.grayed-out-container {
+  filter: grayscale(100%);
+}
+
+$rotateAngles: (
+    90: 90deg,
+    180: 180deg,
+    270: 270deg,
+    "-90": -90deg,
+);
+
+@each $rotationAngleName, $rotationAngle in $rotateAngles {
+  .rotate-#{$rotationAngleName} {
+    transform: rotate(#{$rotationAngle});
+  }
+}
+
+.vertical-align {
+  display: flex;
+  align-items: center;
+}
+
+.bg-lightgrey {
+  background-color: #f2f2f2 !important;
+}
+
+.bg-lightPrimary {
+  background-color: rgba(var(--vs-primary), 0.09);
+}
+
+.bg-none {
+  background: none !important;
+}
+
+.flex-box {
+  display: flex;
+
+  &.flex-column {
+    flex-direction: column;
+  }
+
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &.justify-end {
+    justify-content: flex-end;
+  }
+
+  &.justify-between {
+    justify-content: space-between;
+  }
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.justify-between {
+    justify-content: space-between;
+  }
+
+  .align-self-end {
+    align-self: flex-end;
+  }
+}
+
+$transitionDurations: (
+    "-0": 0s,
+    "-0-25": 0.25s,
+    "-0-50": 0.5s,
+    "-0-75": 0.75s,
+    "-1": 1s,
+    "-1-5": 1.5s,
+    "-2": 2s,
+    "-2-5": 2.5s,
+    "-3": 3s,
+);
+// transition--0-25 (0.25 second transition)
+@each $transitionDuration, $transitionDurationValue in $transitionDurations {
+  .transition-#{$transitionDuration} {
+    transition: all $transitionDurationValue ease !important;
+  }
+}
+
+// to override `animated` animation
+$transitionDurations: (
+    "-0-25": 0.25s,
+    "-0-50": 0.5s,
+    "-0-75": 0.75s,
+    "-1": 1s,
+    "-1-5": 1.5s,
+    "-2": 2s,
+    "-2-5": 2.5s,
+    "-3": 3s,
+);
+// transition--0-25 (0.25 second transition)
+@each $transitionDuration, $transitionDurationValue in $transitionDurations {
+  .animate-#{$transitionDuration} {
+    -webkit-animation-duration: $transitionDurationValue !important;
+    animation-duration: $transitionDurationValue !important;
+  }
+}
+
+$textDecorations: (
+    "underline":underline,
+    "strike":line-through,
+);
+@each $textDecorationType, $textDecoration in $textDecorations {
+  .text-#{$textDecorationType} {
+    text-decoration: $textDecoration;
+  }
+}
+
+$fontWeights: (
+    "bold":bold,
+    "normal":normal,
+    "thick":500,
+);
+@each $fontWeightType, $fontWeight in $fontWeights {
+  .text-#{$fontWeightType} {
+    font-weight: $fontWeight;
+  }
+}
+
+$wordBreaks: (
+    "word":break-word,
+    "all":break-all,
+);
+
+
+@each $wordBreakType, $wordBreak in $wordBreaks {
+  .break-#{$wordBreakType} {
+    word-break: $wordBreak;
+  }
+}
+
+$positions: (
+    "absolute":absolute,
+    "static":static,
+    "fixed":fixed,
+    "relative":relative,
+    "sticky":sticky,
+);
+
+@each $positionType, $position in $positions {
+  .position-#{$positionType} {
+    position: $position;
+  }
+}
+
+.default-phrazor-font {
+  font-family: 'Varela Round', serif;
+}
+
+.ellipsis-word {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.background-white {
+  background-color: white !important;
+}
+
+.background-danger {
+  background-color: rgba(var(--vs-danger), 1);
+  color: white;
+}
+
+.fixed-top {
+  position: fixed;
+  top: 0;
+}
+
+.loading-window-container {
+  position: relative !important;
+}
+
+.spinner-icon {
+  -webkit-animation: fa-spin 1s linear infinite;
+  animation: fa-spin 1s linear infinite;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-muted {
+  color: lightslategray;
+}
+
+.hover-text-white {
+  &:hover {
+    color: white;
+  }
+}
+
+.current-dragging-item {
+  display: none !important;
+}
+
+.current-dragging-app-tab {
+  background-color: white;
+}
+
+.sortable-chosen {
+  cursor: all-scroll;
+}
+
+.vs-con-input {
+  margin-top: 30px;
+}
+
+.vs-con-input {
+  .vs-input--input {
+    &.normal {
+      padding: 0.7rem 0.7rem 0.7rem 0.7rem !important;
+    }
+  }
+
+  .vs-input--icon {
+    margin: 0 4px;
+    top: 11px;
+
+    .vs-input--input {
+      &.normal {
+        padding: 0.7rem 0.7rem 0.7rem 32px !important;
+      }
+    }
+  }
+}
+
+.vs-input--icon {
+  top: inherit;
+}
+
+.vs-input--placeholder {
+  font-family: "Varela Round", serif;
+}
+
+.vs-input--placeholder.normal {
+  padding: 0.9rem;
+}
+
+
+.con-vs-dropdown--menu {
+  //min-width: 200px !important;
+  .vs-dropdown--menu {
+    .subnavbar {
+      min-width: 200px !important;
+    }
+  }
+}
+
+.formula-tooltip {
+  min-width: 450px;
+  padding: 15px;
+  box-shadow: 0 0 4px #888888;
+}
+
+.variables-tooltip {
+  //min-width: 250px;
+  min-width: 15vw;
+  box-shadow: 0 0 4px #888888;
+}
+
+.inactive-tooltip .con-vs-tooltip {
+  color: transparent !important;
+}
+
+.inactive-tooltip {
+  background-color: transparent !important;
+
+  &::after {
+    display: none;
+  }
+}
+
+.card-function-tooltip {
+  min-width: 25vw;
+  border: 1px solid #d0cece;
+  box-shadow: 0 0 2px #888888;
+
+  &.card-function-tooltip-left:after {
+    border-right: 1px solid #a19f9f;
+    border-top: 1px solid #a19f9f;
+  }
+
+  &.card-function-tooltip-top:after {
+    border-right: 1px solid #a19f9f;
+    border-bottom: 1px solid #a19f9f;
+    bottom: -10px;
+  }
+}
+
+.inactive-dropdown {
+  .vs-dropdown--menu {
+    display: none;
+  }
+
+  .vs-dropdown--menu--after {
+    display: none;
+  }
+}
+
+.vs-con-dropdown {
+  cursor: pointer;
+}
+
+.input-custom {
+  border: none;
+  height: 40px;
+  padding-left: 10px;
+}
+
+.styled-select {
+  background-color: white;
+  border: 1px solid #cccccc;
+}
+
+.shadow-container {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+}
+
+.shadow-container-top {
+  box-shadow: 0 5px -10px rgba(0, 0, 0, .12), 0 5px -10px rgba(0, 0, 0, .24);
+}
+
+/*
+-usage-
+<div class="monochrome-button">
+  <vs-button
+    size="small"
+    type="border"
+    color="dark"
+  >
+    Go
+  </vs-button>
+</vs-button>
+*/
+.monochrome-small-button {
+  .vs-button-dark.vs-button-border:hover {
+    background: none !important;
+  }
+
+  .vs-button-dark.vs-button-border {
+    border: 1px solid #ebebeb;
+    color: rgba(var(--vs-dark), 1);
+  }
+
+  .vs-button.small:not(.includeIconOnly) {
+    padding: 0.5rem 1rem;
+  }
+
+  .vs-button--text {
+    font-size: 14px;
+  }
+}
+
+// apply the class over the container of button
+// works best with type="border" size="small" color="dark"
+.flat-button {
+  .vs-button-dark.vs-button-border:hover {
+    //background: none !important;
+  }
+
+  .vs-button {
+    border-radius: 0 !important;
+  }
+
+  .vs-button-dark.vs-button-border {
+    border: 1px solid #ebebeb;
+    color: rgba(var(--vs-dark), 1);
+  }
+
+  .vs-button.small:not(.includeIconOnly) {
+    padding: 0.4rem 0.6rem;
+  }
+
+  .vs-button--text {
+    font-size: 14px;
+  }
+
+  .vs-button-border.isActive .vs-button--text {
+    color: rgba(var(--dark), 1) !important;
+  }
+
+  .vs-button-border.isActive .vs-button--icon {
+    color: rgba(var(--dark), 1) !important;
+  }
+
+  .vs-button-dark.vs-button-border .vs-button-backgroundx, .vs-button-dark.vs-button-flat .vs-button-backgroundx {
+    background: none !important;
+    -webkit-box-shadow: inset 0 0 60px 0 rgba(var(--vs-dark), 1);
+    box-shadow: none !important;
+  }
+}
+
+// to remove the background color on hover of button
+.flat-button-bg-none {
+  .vs-button-dark.vs-button-border:hover {
+    background: none !important;
+  }
+
+  .vs-button-dark.vs-button-border {
+    border: 1px solid transparent;
+    //color: rgba(var(--vs-dark), 1);
+  }
+}
+
+// to display a light border on hover of button
+.flat-button-border-light {
+
+  .vs-button:hover {
+    border: 1px solid lightgrey;
+  }
+}
+
+.container-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.con-content--item {
+  padding: 0 !important;
+}
+
+.vs-notifications {
+  .content-noti {
+    padding: 5px 8px;
+
+    .vs-icon-noti {
+      background: none;
+      padding: 0 15px;
+    }
+  }
+}
+
+.text-align-right {
+  text-align: right;
+}
+
+.text-align-left {
+  text-align: left !important;
+  justify-content: flex-start;
+}
+
+.text-align-justify {
+  text-align: justify;
+}
+
+.text-align-center {
+  text-align: center;
+  justify-content: center;
+}
+
+.text-dark-grey {
+  color: #494949;
+}
+
+.text-grey {
+  color: #626262;
+}
+
+.text-lightgrey {
+  color: #8a8a8a;
+}
+
+.text-lightestgrey {
+  color: #cacaca;
+}
+
+.free-letter-spacing {
+  letter-spacing: 1px;
+}
+
+.medium-letter-spacing {
+  letter-spacing: 0.5px;
+}
+
+.text-disabled {
+  color: #626262 !important;
+  opacity: 0.8 !important;
+  pointer-events: none !important;
+  @extend .not-allowed-cursor
+}
+
+.disabled-container {
+  pointer-events: none;
+  @extend .not-allowed-cursor
+}
+
+@keyframes yellow-fade {
+  0% {
+    background-color: rgba(var(--vs-primary), 0);
+  }
+  50% {
+    background-color: rgba(var(--vs-primary), 0.4);
+  }
+  100% {
+    background-color: rgba(var(--vs-primary), 0);
+  }
+}
+
+.blink-background {
+  -webkit-animation: yellow-fade 1s ease-in 1;
+  animation: yellow-fade 1s ease-in 1;
+}
+
+
+.reset-scale {
+  zoom: 1.25;
+  -moz-transform: scale(1.25);
+  -moz-transform-origin: 0 0;
+
+  @-moz-document url-prefix() {
+    & {
+      width: 80% !important;
+    }
+  }
+}
+
+.regular-scale {
+  zoom: 0.8;
+  -moz-transform: scale(0.8);
+  -moz-transform-origin: 0 0;
+  @-moz-document url-prefix() {
+    & {
+      width: 100% !important;
+    }
+  }
+}
+
+.etl-ghost-class {
+  visibility: hidden !important;
+}
+
+.center-align-content {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dragging-function-parameter {
+  display: none;
+}
+
+.float-right {
+  float: right;
+}
+
+.text-icon-abc {
+  color: #b8b8b8;
+}
+
+.rotate-30 {
+  transform: rotate(30deg);
+}
+
+.display-block {
+  display: block;
+}
+
+.display-inline-block {
+  display: inline-block;
+}

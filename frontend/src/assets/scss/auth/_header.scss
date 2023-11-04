@@ -1,0 +1,131 @@
+
+header {
+  background: #fff;
+  height: 80px;
+  left: 0;
+  position: fixed;
+  top: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+  z-index: 99;
+
+  .logo {
+    height: 80px;
+    display: flex;
+    align-items: center;
+
+    .link {
+      img {
+        width: 180px;
+      }
+    }
+  }
+}
+
+header.nav-up {
+  -webkit-transform: translateY(-80px);
+  transform: translateY(-80px);
+}
+
+header.scroll {
+  background-color: white;
+  -webkit-box-shadow: 0 3px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 20px rgba(0, 0, 0, 0.05);
+}
+
+.hamburger {
+  background-color: transparent;
+  border: none;
+  display: block;
+  float: right;
+  margin: 17px 0;
+  padding: 10px;
+}
+
+.navigation {
+  display: none;
+  list-style: none;
+  margin: 24px 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+    padding: 4px 16px;
+
+    a {
+      color: #535353;
+      display: inline-block;
+      font-family: "Muli", "Helvetica Neue Light", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      text-decoration: none;
+
+      &:hover {
+        color: rgba(var(--vs-primary), 1);
+        text-decoration: none;
+      }
+
+      &:focus {
+        text-decoration: none;
+      }
+
+      &:active {
+        text-decoration: none;
+      }
+
+      .icon {
+        font-size: 11px;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.header-calls {
+  display: none;
+  list-style: none;
+  margin: 13px 0;
+  padding: 0;
+
+  li {
+    display: inline-block;
+
+    a.btn-sm {
+      color: #535353;
+
+      &:hover {
+        color: rgba(var(--vs-primary), 1);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  .hamburger {
+    display: none;
+  }
+  .navigation {
+    display: block;
+  }
+  .header-calls {
+    display: block;
+  }
+}
+
+.dropdown-row {
+  width: 60vh !important;
+}
+
+.dropdown-solution {
+  height: 190px !important;
+  justify-content: left;
+  overflow: hidden;
+}
+
+.navigation-wave {
+  height: 190px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

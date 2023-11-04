@@ -1,0 +1,51 @@
+{
+  "name": "fil-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit",
+    "lint": "vue-cli-service lint --fix"
+  },
+  "dependencies": {
+    "animate.css": "^3.7.2",
+    "axios": "^0.21.1",
+    "codemirror": "^5.59.4",
+    "core-js": "^3.20.3",
+    "cropperjs": "^1.5.9",
+    "echarts": "^4.9.0",
+    "jquery": "^3.5.1",
+    "jquery-sparkline": "^2.4.0",
+    "js-cookie": "^2.2.1",
+    "vue": "^2.6.12",
+    "vue-dompurify-html": "^2.3.0",
+    "vue-echarts": "^4.1.0",
+    "vue-gtag": "^1.11.0",
+    "vue-gtm": "^2.3.1",
+    "vue-meta": "^2.4.0",
+    "vue-router": "^3.5.1",
+    "vue-select": "^3.11.2",
+    "vue-tour": "^1.5.0",
+    "vuedraggable": "^2.24.1",
+    "vuejs-datepicker": "^1.6.2",
+    "vuesax": "^3.12.2",
+    "vuex": "^3.6.2"
+  },
+  "devDependencies": {
+    "@vue/babel-preset-app": "^4.5.15",
+    "@vue/cli-plugin-eslint": "^3.12.1",
+    "@vue/cli-plugin-unit-jest": "~4.5.0",
+    "@vue/cli-service": "^4.5.11",
+    "@vue/test-utils": "^1.3.0",
+    "compression-webpack-plugin": "^6.1.1",
+    "eslint": "^7.20.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "jest-transform-stub": "^2.0.0",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.1",
+    "vue-jest": "^3.0.7",
+    "vue-template-compiler": "^2.6.12",
+    "webpack": "^4.46.0"
+  }
+}
