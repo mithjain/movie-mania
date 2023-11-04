@@ -22,6 +22,8 @@ except FileNotFoundError:
         'DATABASE': {}
     }
 
+SECRET_KEY = 'django-insecure-_r!%!9%g=+wc5!(vodsw95%ls&$*ti)r2aub6r5nh(nu@bu_e8'
+
 BASE_URL = MOVIE_ENV.get('BASE_URL', '')
 ENV = MOVIE_ENV.get('ENV', 'dev').lower()
 
@@ -45,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'corsheaders',
+    'movies'
 ]
 
 MIDDLEWARE = [
