@@ -5,7 +5,7 @@
     "DATABASE": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
         "USER": "",
-        "NAME": "",
+        "NAME": "movie_mania",
         "PASSWORD": "",
         "HOST": "localhost",
         "PORT": 5432
