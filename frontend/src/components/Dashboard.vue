@@ -100,9 +100,9 @@
             vs-w="12"
           >
             <vs-card class="pt-20 text-align-center">
-              <span>
+              <h2>
                 Number of Movies released By Year
-              </span>
+              </h2>
               <app-chart
                 :chart="movieByYearChart"
               />
@@ -111,7 +111,7 @@
         </vs-row>
         <vs-row
           vs-w="11.5"
-          class="pt-20"
+          class="pt-20 mb-30"
         >
           <vs-col
             vs-offset="0.5"
@@ -120,9 +120,9 @@
             vs-w="12"
           >
             <vs-card class="pt-20 text-align-center">
-              <span>
+              <h2>
                 Average rating of Movies for each Genre across Years
-              </span>
+              </h2>
               <app-chart
                 :chart="avgRatingByYear"
               />

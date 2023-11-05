@@ -5,11 +5,11 @@
     :class="'z-level-6 position-relative'"
   >
     <vs-row class="text-align-center mt-25">
-      <span
+      <h1
         style="font-weight: bolder;font-size: 22px;"
       >
         MOVIE MANIA
-      </span>
+      </h1>
     </vs-row>
   </div>
 </template>
