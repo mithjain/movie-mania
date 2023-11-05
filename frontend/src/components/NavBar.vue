@@ -22,15 +22,6 @@
 </script>
 
 
-<style lang="scss">
-  .profile-menu-container {
-    .vs-dropdown--menu {
-      margin-right: 7px;
-    }
-  }
-
-</style>
-
 <style scoped lang="scss">
   .navbar-container {
     width: 100%;

@@ -12,7 +12,8 @@
       />
     </vs-row>
     <div
-      class="body-container"
+      class="body-container thinScrollbar"
+      style="overflow-y: auto;"
     >
       <vs-row
         vs-type="flex"
@@ -54,7 +55,7 @@
         >
           <vs-button
             :color="'blue'"
-            size="small"
+            size="medium"
             class="mr-15"
             @click="applyFilters()"
           >
@@ -63,77 +64,86 @@
           <vs-button
             class="ml-5"
             :color="'lightgrey'"
-            size="small"
+            size="medium"
             @click="resetFilters()"
           >
             Reset
           </vs-button>
         </vs-col>
       </vs-row>
-      <vs-row
-        vs-w="11.5"
-        class="pt-20"
-      >
-        <vs-col
-          vs-offset="0.5"
-          vs-type="flex"
-          vs-align="center"
-          vs-w="12"
+      <vs-row>
+        <vs-row
+          vs-w="11.5"
+          class="pt-20"
         >
-          <vs-card class="pt-20 text-align-center">
-            <h1>
-              Total Number of Movies: 234
-            </h1>
-          </vs-card>
-        </vs-col>
-      </vs-row>
-      <vs-row
-        vs-w="11.5"
-        class="pt-20"
-      >
-        <vs-col
-          vs-offset="0.5"
-          vs-type="flex"
-          vs-align="center"
-          vs-w="12"
+          <vs-col
+            vs-offset="0.5"
+            vs-type="flex"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-card class="pt-20 text-align-center">
+              <h1>
+                Total Number of Movies: {{ totalMoviesCount }}
+              </h1>
+            </vs-card>
+          </vs-col>
+        </vs-row>
+        <vs-row
+          vs-w="11.5"
+          class="pt-20"
         >
-          <vs-card class="pt-20 text-align-center">
-            <h1>
-              Total Number of Movies: 234
-            </h1>
-          </vs-card>
-        </vs-col>
-      </vs-row>
-      <vs-row
-        vs-w="11.5"
-        class="pt-20"
-      >
-        <vs-col
-          vs-offset="0.5"
-          vs-type="flex"
-          vs-align="center"
-          vs-w="12"
+          <vs-col
+            vs-offset="0.5"
+            vs-type="flex"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-card class="pt-20 text-align-center">
+              <span>
+                Number of Movies released By Year
+              </span>
+              <app-chart
+                :chart="movieByYearChart"
+              />
+            </vs-card>
+          </vs-col>
+        </vs-row>
+        <vs-row
+          vs-w="11.5"
+          class="pt-20"
         >
-          <vs-card class="pt-20 text-align-center">
-            <h1>
-              Total Number of Movies: 234
-            </h1>
-          </vs-card>
-        </vs-col>
+          <vs-col
+            vs-offset="0.5"
+            vs-type="flex"
+            vs-align="center"
+            vs-w="12"
+          >
+            <vs-card class="pt-20 text-align-center">
+              <span>
+                Average rating of Movies for each Genre across Years
+              </span>
+              <app-chart
+                :chart="avgRatingByYear"
+              />
+            </vs-card>
+          </vs-col>
+        </vs-row>
       </vs-row>
     </div>
   </div>
 </template>
 
 <script>
-  import NavBar from './navbar/NavBar';
+  import NavBar from './NavBar.vue';
   import MultiSelectItem from '@/components/inputs/MultiSelectItem.vue';
   import MultiSelect from '@/components/inputs/MultiSelect.vue';
   import LoadingWindow from '@/components/helpers/LoadingWindow.vue';
-
+  import AppChart from '@/components/AppChart.vue';
 
   export default {
     components: {
+      AppChart,
       NavBar,
       MultiSelectItem,
       MultiSelect,
@@ -147,10 +157,16 @@
           { 'name': 'actors', 'label': 'Actors', 'options': [], 'selected_values': [] },
         ],
         loadingScreen: [],
+        totalMoviesCount: null,
+        movieByYearChart: null,
+        avgRatingByYear: null,
       };
     },
     beforeMount () {
-      // this.getFilterOptions();
+      this.loadingScreen.push(true);
+      this.getFilterOptions();
+      this.applyFilters();
+      this.loadingScreen.pop(true);
     },
     methods: {
       getFilterOptions: function () {
@@ -164,7 +180,21 @@
         });
       },
       applyFilters: function () {
-
+        this.loadingScreen.push(true);
+        let requestData = { 'filters': {} };
+        this.filters.forEach((filter) => {
+          requestData['filters'][filter.name] = filter.selected_values;
+        });
+        this.axiosPromise({
+          url: '/movies/cards/',
+          method: 'POST',
+          data: requestData
+        }).then(response => {
+          this.totalMoviesCount = response['total_movies_count'];
+          this.movieByYearChart = response['movie_by_year'];
+          this.avgRatingByYear = response['avg_rating_by_year'];
+          this.loadingScreen.pop(true);
+        });
       },
       resetFilters: function () {
         this.filters.forEach((filter) => {
@@ -213,8 +243,7 @@
 
 
   .main-container {
-    background-color:  #f0f5f5;
-;
+    background-color: #f0f5f5;;
     //min-height: 5000px;
   }
 

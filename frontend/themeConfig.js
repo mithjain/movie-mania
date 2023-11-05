@@ -1,12 +1,14 @@
 // MAIN COLORS - VUESAX THEME COLORS
 let colors = {
-  primary: '#FF7878',
-  secondary: '#69676B',
-  success: '#28C76F',
-  danger: '#EA5455',
-  warning: '#FF9F43',
+  primary: '#191948', // Primary
+  secondary: '#64728F', // Secondary
+  success: '#0243EC', // Action
+  danger: '#ED1D24', // Danger
+  warning: '#e15759', // Warning
   dark: '#1E1E1E',
-  info: '#909399',
+  tertiary: '#E6EEFF', // Selection
+  info: '#002583', // Action/shape hover
+  outline: '#B8C4E5', // Outline
 };
 
 import Vue from 'vue';
