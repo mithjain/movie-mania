@@ -6,6 +6,7 @@
   >
     <vs-row class="text-align-center mt-25">
       <h1
+        class="text-primary"
         style="font-weight: bolder;font-size: 22px;"
       >
         MOVIE MANIA

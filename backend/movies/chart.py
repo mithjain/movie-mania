@@ -182,7 +182,6 @@ class AvgRatingPerGenre(BaseChart):
         dimension_data = list(self.data_frame["Release Year"].astype(str).unique())
         for _data in legend_data:
             if _data and _data != 'None':
-                print('DATA:--', _data, type(_data))
                 _group = group.get_group(_data)
                 _series = dict()
                 _series["name"] = _data

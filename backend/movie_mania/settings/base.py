@@ -59,7 +59,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'movie_mania.middleware.request.LoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'movie_mania.urls'
